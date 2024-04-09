@@ -50,7 +50,7 @@ const submitCode=async(req,res)=>{
     db.query(sql, [name, sourceCode, input, output, timestamp], (err, result) => {
         if (err) {
             console.log(err);
-            return res.json({ Message: err });
+            return res.json({ Message: "Server Side Error" });
         }
         return res.json({ Status: "Success" });
     });
