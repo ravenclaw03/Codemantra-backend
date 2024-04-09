@@ -18,7 +18,11 @@ const loginAdmin = async (req, res) => {
       if (match) {
         const name = data[0].name;
         const token = jwt.sign({ name }, secretKey, { expiresIn: "1d" });
-        res.cookie("token", token);
+        res.cookie("token", token, {
+          httpOnly: true,
+          sameSite: "none",
+          secure: true,
+        });
         return res.json({ Status: "Success" });
       } else {
         return res.json({ Message: "Incorrect password" });
